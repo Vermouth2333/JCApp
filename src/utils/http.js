@@ -1,7 +1,8 @@
 // axios二次封装
 import axios from "axios";
-import qs from "qs"
-import loading from "lib/loading/index.js"
+import qs from "qs";
+import loading from "lib/loading/index.js";
+
 
 let vm=loading()
 const server=axios.create({
@@ -10,21 +11,21 @@ const server=axios.create({
     withCredentials:true
 })
 
+
 // 拦截器
 server.interceptors.request.use((config)=>{
     if(config.method.toUpperCase()=="GET"){
         config.params={...config.data}
     }else if(config.method.toUpperCase()=="POST"){
         config.headers["content-type"]="appliaction/x-www-form-urlencoded";
-        // config.data=qs.stringify(config.data)
+        //config.data=qs.stringify(config.data)
     }
-
     vm.handlemount();
-
     return config;
 },(err)=>{
     Promise.reject(err);
 })
+
 
 server.interceptors.response.use((res)=>{
     if(res.statusText=="OK"){
