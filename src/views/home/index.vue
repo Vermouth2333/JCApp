@@ -2,10 +2,12 @@
     <div id="home_box">
         <!-- 头部搜索 -->
         <div class="search">
-            <div>
+            <router-link
+            to="/cityList"
+            tag="div">
                 <i class="iconfont">&#xe611;</i>
                 <span>全国</span>
-            </div>
+            </router-link>
             <div>
                 <img src="../../../public/iconfont/search.png" alt="">
                 <span>搜索热门演出</span>
@@ -13,221 +15,220 @@
             <div></div>
         </div>
         <!-- 内容盒子 -->
-        <div class="center_box">
-            <!-- 轮播图 -->
-            <div class="swiper__top">
-                <div class="swiper-container" ref="swiperContainer">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide" v-for="(item,index) in bannerImg" :key="index">
-                            <img :src="item" alt="" style="width:100%;height:100%;">
-                        </div>
-                    </div>
-                    <!-- 如果需要分页器 -->
-                    <div class="swiper-pagination"></div>
-
-                      <!-- 如果需要导航按钮
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-button-next"></div> -->
-                    
-                </div>
-            </div>
-            <!-- 内容 -->
-            <article class="article__center">
-                <!-- 分类 演唱会  音乐剧  舞台剧 儿童剧  音乐会 -->
-                <div class="article__center_top_box">
-                    <div v-for="(item,index) in classify_list" :key="index">
-                        <a href=""><img :src="item.pic" alt=""><span>{{item.name}}</span></a>
-                    </div>
-                </div>
-                <!-- 图片点击 -->
-                <div class="advertion"><a><img :src="ad_list.advert1[0].pic" alt=""></a></div>
-                <!-- 五分类专区 -->
-                <div class="operation">
-                    <!-- 上 -->
-                    <ul class="operation__top">
-                        <li>
-                            <a href="">
-                                <div>
-                                    <p>{{operation_list[0]?operation_list[0].name:""}}</p>
-                                    <p v-html="operation_list[0]?operation_list[0].describe:''">{{operation_list[0]?operation_list[0].describe:''}}</p>
+        <div class="center_box__box">
+            <Ver-BScroll ref="verscroll">
+                <div class="center_box">
+                    <!-- 轮播图 -->
+                    <div class="swiper__top">
+                        <div class="swiper-container" ref="swiperContainer">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide" v-for="(item,index) in bannerImg" :key="index">
+                                    <img :src="item" alt="" style="width:100%;height:100%;">
                                 </div>
-                                <img :src="operation_list[0]?operation_list[0].pic:''" alt="">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <div>
-                                    <p>{{operation_list[1]?operation_list[1].name:""}}</p>
-                                    <p v-html="operation_list[1]?operation_list[1].describe:''">{{operation_list[1]?operation_list[1].describe:''}}</p>
-                                </div>
-                                <img :src="operation_list[1]?operation_list[1].pic:''" alt="">
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- 下 -->  
-                    <ul class="operation__bottom">
-                        <li>
-                            <a href="">
-                                <h3>{{operation_list[2]?operation_list[2].name:""}}</h3>
-                                <p v-html="operation_list[2]?operation_list[2].describe:''">{{operation_list[2]?operation_list[2].describe:''}}</p>
-                                <img :src="operation_list[2]?operation_list[2].pic:''" alt="">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <h3>{{operation_list[3]?operation_list[3].name:""}}</h3>
-                                 <p v-html="operation_list[3]?operation_list[3].describe:''">{{operation_list[3]?operation_list[3].describe:''}}</p>
-                                <img :src="operation_list[3]?operation_list[3].pic:''" alt="">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <h3>{{operation_list[4]?operation_list[4].name:""}}</h3>
-                                 <p v-html="operation_list[4]?operation_list[4].describe:''">{{operation_list[4]?operation_list[4].describe:''}}</p>
-                                <img :src="operation_list[4]?operation_list[4].pic:''" alt="">
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </article>
-                <!-- 热门演出 -->
-                <section class="hot__play">
-                    <div class="hot__play__title">
-                        <h3>热门演出</h3>
-                        <span ></span>
-                    </div>
-                    <div class="hot__play__center">
-                        <div v-for="(item,index) in hotPlay" :key="index">
-                            <img :src="item.pic" alt="">
-                            <p>{{item.show_name}}</p>
+                            </div>
+                            <!-- 如果需要分页器 -->
+                            <div class="swiper-pagination"></div>
                         </div>
                     </div>
-                </section>
-               <!-- 巡回演出 -->
-                 <section class="return__play">
-                    <div class="return__play__title">
-                        <h3>巡回演出</h3>
-                        <span></span>
-                    </div>
-                    <div class="return__play__center">
-                        <div v-for="(item,index) in returnPlay" :key="index">
-                            <img :src="item.pic" alt="">
-                            <p>{{item.show_name}}</p>
-                            <p>{{item.schedular_num}}场巡演</p>
-                        </div>
-                    </div>
-                </section>
-                <!-- VIP -->
-                <section class="vip">
-                    <div>
-                        <span></span>
-                        <span>VIP+会员尊享权益</span>
-                    </div>
-                    <div>
-                        <span>开通99元/年</span>
-                        <span></span>
-                    </div>
-                </section>
-                <!-- 专享折扣  优先购票 -->
-                <section class="vip__block__conent">
-                    <div class="vip__block__conent__left">
-                        <h3>专享则扣</h3>
-                        <ul>
-                            <li>
-                                <img :src="forVip.discountList[0]?forVip.discountList[0].pic:''" alt="">
-                                <span>{{forVip.discountList[0]?forVip.discountList[0].min_discount:""}}</span>
-                                <span>折</span>
-                            </li>
-                            <li>
-                                <img :src="forVip.discountList[1]?forVip.discountList[1].pic:''" alt="">
-                                <span>{{forVip.discountList[1]?forVip.discountList[1].min_discount:""}}</span>
-                                <span>折</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="vip__block__conent__right">
-                        <h3>优先购票</h3>
-                        <img :src="forVip.watchList[0]?forVip.watchList[0].pic:''" alt="">
-                        <span>{{forVip.watchList[0]?forVip.watchList[0].date:''}} 16:18</span>
-                        <span>开始</span>
-                    </div>
-                </section>
-                <!-- 演唱会 音乐剧 舞台剧 儿童剧 音乐会 展览休闲 -->
-                <div class="category_box">
-                    <section v-for="(item, index) in sixPlay" :key="index">
-                        <hgroup>
-                            <h3>{{sixPlay[index].title}}</h3>
-                            <span></span>
-                        </hgroup>
-                        <div class="category_imgmsg">
-                            <img :src="sixPlay[index].list[0].pic" alt="">
-                            <div>
-                                <span>{{sixPlay[index].list[0].date}}</span> <span>{{sixPlay[index].list[0].week}}</span>
-                                <p>{{sixPlay[index].list[0].schedular_name}}</p>
-                                <p>{{sixPlay[index].list[0].city_name}} | {{sixPlay[index].list[0].venue_name}}</p>
+                    <!-- 内容 -->
+                    <article class="article__center">
+                        <!-- 分类 演唱会  音乐剧  舞台剧 儿童剧  音乐会 -->
+                        <div class="article__center_top_box">
+                            <div v-for="(item,index) in classify_list" :key="index">
+                                <a href=""><img :src="item.pic" alt=""><span>{{item.name}}</span></a>
                             </div>
                         </div>
-                        <div>
-                            <div class="category__swiper">
-                                <div v-for="(item, index) in sixPlay[index].list" :key="index">
+                        <!-- 图片点击 -->
+                        <div class="advertion"><a><img :src="ad_list.advert1[0].pic" alt=""></a></div>
+                        <!-- 五分类专区 -->
+                        <div class="operation">
+                            <!-- 上 -->
+                            <ul class="operation__top">
+                                <li>
+                                    <a href="">
+                                        <div>
+                                            <p>{{operation_list[0]?operation_list[0].name:""}}</p>
+                                            <p v-html="operation_list[0]?operation_list[0].describe:''">{{operation_list[0]?operation_list[0].describe:''}}</p>
+                                        </div>
+                                        <img :src="operation_list[0]?operation_list[0].pic:''" alt="">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        <div>
+                                            <p>{{operation_list[1]?operation_list[1].name:""}}</p>
+                                            <p v-html="operation_list[1]?operation_list[1].describe:''">{{operation_list[1]?operation_list[1].describe:''}}</p>
+                                        </div>
+                                        <img :src="operation_list[1]?operation_list[1].pic:''" alt="">
+                                    </a>
+                                </li>
+                            </ul>
+                            <!-- 下 -->  
+                            <ul class="operation__bottom">
+                                <li>
+                                    <a href="">
+                                        <h3>{{operation_list[2]?operation_list[2].name:""}}</h3>
+                                        <p v-html="operation_list[2]?operation_list[2].describe:''">{{operation_list[2]?operation_list[2].describe:''}}</p>
+                                        <img :src="operation_list[2]?operation_list[2].pic:''" alt="">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        <h3>{{operation_list[3]?operation_list[3].name:""}}</h3>
+                                        <p v-html="operation_list[3]?operation_list[3].describe:''">{{operation_list[3]?operation_list[3].describe:''}}</p>
+                                        <img :src="operation_list[3]?operation_list[3].pic:''" alt="">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        <h3>{{operation_list[4]?operation_list[4].name:""}}</h3>
+                                        <p v-html="operation_list[4]?operation_list[4].describe:''">{{operation_list[4]?operation_list[4].describe:''}}</p>
+                                        <img :src="operation_list[4]?operation_list[4].pic:''" alt="">
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </article>
+                        <!-- 热门演出 -->
+                        <section class="hot__play">
+                            <div class="hot__play__title">
+                                <h3>热门演出</h3>
+                                <span ></span>
+                            </div>
+                            <div class="hot__play__center">
+                                <div v-for="(item,index) in hotPlay" :key="index">
                                     <img :src="item.pic" alt="">
-                                    <p>{{item.schedular_name}}</p>
-                                    <span>￥{{splitPrice(item.low_price)}}</span><span>起</span>
+                                    <p>{{item.show_name}}</p>
                                 </div>
                             </div>
-                        </div>
-                    </section>  
-                </div>  
-                <!-- 热门场馆 -->
-                <div class="hot__airtle">
-                    <hgroup>
-                        <h3>热门场馆</h3>
-                        <span></span>
-                    </hgroup>
-                    <div class="hot__airtle__swiper__box">
-                        <div class="hot__aritle__swiper" v-for="(item,index) in hotVenue" :key="index">
-                            <div class="hot__aritle__swiper_top">
-                                <img :src="item.pic" alt="">
-                                <div>
-                                    <a href="#">{{item.name}}</a>
-                                    <p>{{item.count}}场在售演出</p>
-                                </div>
-                                <a href="#" class="elipse">...</a>
+                        </section>
+                    <!-- 巡回演出 -->
+                        <section class="return__play">
+                            <div class="return__play__title">
+                                <h3>巡回演出</h3>
+                                <span></span>
                             </div>
-                            <div class="hot__aritle__swiper_center">
-                                <p>
-                                    <span>{{item.showList?item.showList[0].show_time:''}}</span>
-                                    <span>{{item.showList?item.showList[1].show_time:''}}</span>
-                                </p>
+                            <div class="return__play__center">
+                                <div v-for="(item,index) in returnPlay" :key="index">
+                                    <img :src="item.pic" alt="">
+                                    <p>{{item.show_name}}</p>
+                                    <p>{{item.schedular_num}}场巡演</p>
+                                </div>
+                            </div>
+                        </section>
+                        <!-- VIP -->
+                        <section class="vip">
+                            <div>
+                                <span></span>
+                                <span>VIP+会员尊享权益</span>
+                            </div>
+                            <div>
+                                <span>开通99元/年</span>
+                                <span></span>
+                            </div>
+                        </section>
+                        <!-- 专享折扣  优先购票 -->
+                        <section class="vip__block__conent">
+                            <div class="vip__block__conent__left">
+                                <h3>专享则扣</h3>
                                 <ul>
-                                    <li></li>
-                                    <li></li>
+                                    <li>
+                                        <img :src="forVip.discountList[0]?forVip.discountList[0].pic:''" alt="">
+                                        <span>{{forVip.discountList[0]?forVip.discountList[0].min_discount:""}}</span>
+                                        <span>折</span>
+                                    </li>
+                                    <li>
+                                        <img :src="forVip.discountList[1]?forVip.discountList[1].pic:''" alt="">
+                                        <span>{{forVip.discountList[1]?forVip.discountList[1].min_discount:""}}</span>
+                                        <span>折</span>
+                                    </li>
                                 </ul>
                             </div>
-                            <div class="hot__aritle__swiper_bottom">
-                                <a href="#"><img :src="item.showList?item.showList[0].pic:''" alt=""></a>
-                                <a href="#"><img :src="item.showList?item.showList[1].pic:''" alt=""></a>
+                            <div class="vip__block__conent__right">
+                                <h3>优先购票</h3>
+                                <img :src="forVip.watchList[0]?forVip.watchList[0].pic:''" alt="">
+                                <span>{{forVip.watchList[0]?forVip.watchList[0].date:''}} 16:18</span>
+                                <span>开始</span>
+                            </div>
+                        </section>
+                        <!-- 演唱会 音乐剧 舞台剧 儿童剧 音乐会 展览休闲 -->
+                        <div class="category_box">
+                            <section v-for="(item, index) in sixPlay" :key="index">
+                                <hgroup>
+                                    <h3>{{sixPlay[index].title}}</h3>
+                                    <span></span>
+                                </hgroup>
+                                <div class="category_imgmsg">
+                                    <img :src="sixPlay[index].list[0].pic" alt="">
+                                    <div>
+                                        <span>{{sixPlay[index].list[0].date}}</span> <span>{{sixPlay[index].list[0].week}}</span>
+                                        <p>{{sixPlay[index].list[0].schedular_name}}</p>
+                                        <p>{{sixPlay[index].list[0].city_name}} | {{sixPlay[index].list[0].venue_name}}</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="category__swiper">
+                                        <div v-for="(item, index) in sixPlay[index].list" :key="index">
+                                            <img :src="item.pic" alt="">
+                                            <p>{{item.schedular_name}}</p>
+                                            <span>￥{{splitPrice(item.low_price)}}</span><span>起</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>  
+                        </div>  
+                        <!-- 热门场馆 -->
+                        <div class="hot__airtle">
+                            <hgroup>
+                                <h3>热门场馆</h3>
+                                <span></span>
+                            </hgroup>
+                            <div class="hot__airtle__swiper__box">
+                                <div class="hot__aritle__swiper" v-for="(item,index) in hotVenue" :key="index">
+                                    <div class="hot__aritle__swiper_top">
+                                        <img :src="item.pic" alt="">
+                                        <div>
+                                            <a href="#">{{item.name}}</a>
+                                            <p>{{item.count}}场在售演出</p>
+                                        </div>
+                                        <a href="#" class="elipse">...</a>
+                                    </div>
+                                    <div class="hot__aritle__swiper_center">
+                                        <p>
+                                            <span>{{item.showList?item.showList[0].show_time:''}}</span>
+                                            <span>{{item.showList?item.showList[1].show_time:''}}</span>
+                                        </p>
+                                        <ul>
+                                            <li></li>
+                                            <li></li>
+                                        </ul>
+                                    </div>
+                                    <div class="hot__aritle__swiper_bottom">
+                                        <a href="#"><img :src="item.showList?item.showList[0].pic:''" alt=""></a>
+                                        <a href="#"><img :src="item.showList?item.showList[1].pic:''" alt=""></a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        <!-- 为您推荐 -->
+                        <div class="recommend__box">
+                            <h3>为您推荐</h3>
+                            <ul class="recommend">
+                                <li v-for="(item,index) in forYou" :key="index">
+                                    <div><a href=""><img :src="item.schePic" alt=""></a></div>
+                                    <div>
+                                        <p>{{item.show_time}}</p>
+                                        <p>{{item.show_name}}</p>
+                                        <p>{{item.c_name}} | {{item.v_name}}</p>
+                                        <p>
+                                            <span>￥{{splitPrice(item.low_price)}}</span> <span>起</span>
+                                        </p>
+                                    </div>
+                                </li>
+                            </ul>
                     </div>
                 </div>
-                <!-- 为您推荐 -->
-                <div class="recommend__box">
-                    <h3>为您推荐</h3>
-                    <ul class="recommend">
-                        <li v-for="(item,index) in forYou" :key="index">
-                            <div><a href=""><img :src="item.schePic" alt=""></a></div>
-                            <div>
-                                <p>{{item.show_time}}</p>
-                                <p>{{item.show_name}}</p>
-                                <p>{{item.c_name}} | {{item.v_name}}</p>
-                                <p>
-                                    <span>￥{{splitPrice(item.low_price)}}</span> <span>起</span>
-                                </p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+            </Ver-BScroll>
         </div>
     </div>
 </template>
@@ -242,6 +243,7 @@ import { constants } from 'crypto';
 export default {
     name:"Home",
         async created(){
+        
         let imgData = await home_now_api();
         this.ad_list.advert1[0].pic = imgData.data.ad_list.advert1[0].pic; //获取图片图标信息
         this.classify_list=imgData.data.classify_list;//演唱会 音乐剧 舞台剧 儿童剧 音乐会
@@ -335,12 +337,18 @@ export default {
            return price;
         },
     },
+    mounted(){
+        this.$refs.verscroll.handlepullingDown(()=>{
+            console.log("111");
+        });
+    }
 }
 </script>
 <style scoped  lang="scss">
-    #home_box{height: 100%; background-color: #F5F5F5;}
+    #home_box{height:100%;background-color: #F5F5F5;}
     /* 搜索栏 */
     .search{width: 100%;position: absolute;top: 0;height: .44rem;z-index: 10;;display:flex;justify-content: space-between;align-items: center; padding:0 .15rem;
+        // background-color: #fff;
         div:nth-of-type(1){width: .6rem;height: .3rem;background-color: rgba(0,0,0,.3);border: 1px solid hsla(0,0%,88%,.3);line-height:.3rem;border-radius: .13rem;
             i{width: .11rem;height: .13rem; color: #fff;padding-left: .05rem;}
             span{color: #fefefe;font-weight: 700;font-size: .15rem;margin-left: .005rem;}
@@ -354,8 +362,9 @@ export default {
             background-size: 100%;
         }
     }
+    .center_box__box{height: 100%;width: 100%;position: absolute;top: 0;bottom: .49rem;overflow-y: auto;}
     /* 内容盒子 */
-    .center_box{width: 100%;position: absolute;height: auto;top: 0;bottom: .49rem;overflow-y: auto;}
+    .center_box{width: 100%;height:auto;touch-action: none;}
     /* 头部轮播图 */
     .swiper__top{width: 100%;height: 1.96rem;background-color: aquamarine;
         .swiper-container {width: 100%;height: 100%;}  

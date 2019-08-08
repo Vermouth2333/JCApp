@@ -4,6 +4,7 @@ import home from "./home"
 import list from "./list"
 import order from "./order"
 import mine from "./mine"
+import cityList from "./cityList"
 Vue.use(VueRouter)
 
 export default new VueRouter({
@@ -16,6 +17,7 @@ export default new VueRouter({
         home,
         list,
         order,
-        mine
+        mine,
+        cityList
     ]
 })

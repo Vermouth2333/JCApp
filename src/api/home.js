@@ -14,3 +14,7 @@ export const for_vip_api =()=>http("get","/vip/index/getVipHomeSchedular?version
 //热门场馆
 export const hot_venue_api =()=>http("get","/home/index/getHotTheatre?version=6.0.3&referer=2")
 
+//热门城市
+export const hot_city_api =()=>http("get","/city/city/getHotCityList?version=6.0.3&referer=2")
+//城市列表
+export const all_city_api =()=>http("get","/city/city/getSortedCityList?version=6.0.3&referer=2")

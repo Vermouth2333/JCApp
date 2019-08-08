@@ -1,31 +1,23 @@
 <template>
   <div id="app">
-    <router-view></router-view>
-    <TabBer/>
-    <!-- <loading/> -->
+      <keep-alive>
+        <router-view></router-view>
+      </keep-alive>
+    <TabBer v-if="$route.meta.tabBar"/>
   </div>
 </template>
 <script>
 import TabBer from "common/tabBer"
-//import http from "utils/http.js"
-//import Loading from "lib/loading/index.js"
 export default {
   name:"App",
   components:{
     TabBer,
-   // Loading
-  },
 
-  //  created(){
-  //    http("get","/RestTheatre/getTheatreList?page=1&version=6.0.1&referer=2").then((data)=>{
-  //      console.log(data)
-  //    })
-  //  }
-  
+  },
 }
 </script>
 
 <style lang="scss" scoped>
-  #app{height: 100%;}
+  #app{height:100%;}
 </style>
 

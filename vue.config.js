@@ -8,6 +8,10 @@ module.exports={
         //https://api.juooo.com/home/index/getRecommendShow?cityAdd=&page=1&version=6.0.3&referer=2
         //https://api.juooo.com/vip/index/getVipHomeSchedular?version=6.0.3&referer=2
         //https://api.juooo.com/home/index/getHotTheatre?version=6.0.3&referer=2
+
+        //城市
+        //https://api.juooo.com/city/city/getHotCityList?version=6.0.3&referer=2
+        //https://api.juooo.com/city/city/getSortedCityList?version=6.0.3&referer=2
         proxy:{
             "/home":{
                 target:"https://api.juooo.com",
@@ -15,6 +19,11 @@ module.exports={
                 secure: false
             },
             "/vip":{
+                target:"https://api.juooo.com",
+                changeOrigin:true,
+                secure: false
+            },
+            "/city":{
                 target:"https://api.juooo.com",
                 changeOrigin:true,
                 secure: false
