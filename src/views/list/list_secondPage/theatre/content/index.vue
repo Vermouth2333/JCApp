@@ -8,7 +8,7 @@
         
         <div class="list">
             <div class="category_container">
-                <a href="#">
+                <a href="#/home">
                     <img src="./img/a.png" alt="">
                     <p>演出</p>
                 </a>
@@ -20,7 +20,7 @@
                     <img src="./img/c.png" alt="">
                     <p>剧院</p>
                 </a>
-                 <a href="#">
+                 <a href="#/rebate">
                     <img src="./img/d.png" alt="">
                     <p>特惠</p>
                 </a>
