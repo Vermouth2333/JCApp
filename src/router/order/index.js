@@ -3,7 +3,7 @@ export default{
     component:()=>import("views/order"),
     name:"order",
     meta:{
-        tabBer:true,
+        tabBar:true,
         auth:false
     },
 }

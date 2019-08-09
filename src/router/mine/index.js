@@ -3,7 +3,7 @@ export default{
     component:()=>import("views/mine"),
     name:"mine",
     meta:{
-        tabBer:true,
+        tabBar:true,
         auth:false
     },
 }

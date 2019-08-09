@@ -3,7 +3,7 @@ export default{
     component:()=>import("views/detailD"),
     name:"detailD",
     meta:{
-        tabBer:false,
+        tabBar:false,
         auth:false
     },
     props:true

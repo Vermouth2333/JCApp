@@ -4,7 +4,7 @@ export default{
     name:"rebate",
     redirect:"/rebate/all",
     meta:{
-        tabBer:false,
+        tabBar:false,
         auth:false
     },
     children:[
@@ -13,7 +13,7 @@ export default{
             component:()=>import("components/all"),
             name:"all",
             meta:{
-                tabBer:false,
+                tabBar:false,
                 auth:false
             },
         },
@@ -22,7 +22,7 @@ export default{
             component:()=>import("components/concert"),
             name:"concert",
             meta:{
-                tabBer:false,
+                tabBar:false,
                 auth:false
             },
         },
@@ -31,7 +31,7 @@ export default{
             component:()=>import("components/musical"),
             name:"musical",
             meta:{
-                tabBer:false,
+                tabBar:false,
                 auth:false
             },
         },
@@ -40,7 +40,7 @@ export default{
             component:()=>import("components/play"),
             name:"play",
             meta:{
-                tabBer:false,
+                tabBar:false,
                 auth:false
             },
         },
@@ -49,7 +49,7 @@ export default{
             component:()=>import("components/child"),
             name:"child",
             meta:{
-                tabBer:false,
+                tabBar:false,
                 auth:false
             },
         },
@@ -58,7 +58,7 @@ export default{
             component:()=>import("components/theater"),
             name:"theater",
             meta:{
-                tabBer:false,
+                tabBar:false,
                 auth:false
             },
         },
@@ -67,7 +67,7 @@ export default{
             component:()=>import("components/opera"),
             name:"opera",
             meta:{
-                tabBer:false,
+                tabBar:false,
                 auth:false
             },
         },
@@ -76,7 +76,7 @@ export default{
             component:()=>import("components/show"),
             name:"show",
             meta:{
-                tabBer:false,
+                tabBar:false,
                 auth:false
             },
         },
@@ -85,7 +85,7 @@ export default{
             component:()=>import("components/dance"),
             name:"dance",
             meta:{
-                tabBer:false,
+                tabBar:false,
                 auth:false
             },
         }

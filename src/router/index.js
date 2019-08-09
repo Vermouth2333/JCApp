@@ -6,6 +6,7 @@ import order from "./order"
 import mine from "./mine"
 import rebate from "./rebate"
 import detailD from "./detailD"
+import cityList from "./cityList"
 Vue.use(VueRouter)
 
 export default new VueRouter({
@@ -20,7 +21,7 @@ export default new VueRouter({
         order,
         mine,
         rebate,
-        detailD
-     
+        detailD,
+        cityList,
     ]
 })

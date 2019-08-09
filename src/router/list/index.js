@@ -3,7 +3,7 @@ export default{
     component:()=>import("views/list"),
     name:"list",
     meta:{
-        tabBer:true,
+        tabBar:true,
         auth:false
     },
 }

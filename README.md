@@ -12,7 +12,7 @@
     swiper
     Token验证
     vue-loader(做编译转义)
-    vue-touch 移动端手指事件
+    vue-touch
 
 ### 项目依赖
 ```javascript
