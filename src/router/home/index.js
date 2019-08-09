@@ -4,6 +4,8 @@ export default{
     name:"home",
     meta: {
         title: "列表",
-        flag: true
+        flag: true,
+        tabBar:true,
+        auth:false,
     },
 }

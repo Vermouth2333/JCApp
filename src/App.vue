@@ -1,30 +1,22 @@
 <template>
   <div id="app">
-    <router-view></router-view>
-    <TabBer v-if="this.$route.meta.flag"/>
-    <loading/>
+      <router-view></router-view> 
+    <TabBar v-if="$route.meta.tabBar"/>
+    <!-- <Loading/> -->
   </div>
 </template>
 <script>
-import TabBer from "common/tabBer"
-// import http from "utils/http.js"
-import Loading from "lib/loading/index.js"
+import TabBar from "common/tabBar"
 export default {
   name:"App",
   components:{
-    TabBer,
-    Loading
+    TabBar,
+
   },
-  //  created(){
-  //    http("get","/home/index/getRecommendShow?cityAdd=&page=1&version=6.0.1&referer=2").then((data)=>{
-  //      console.log(data)
-  //    })
-  //  }
 }
 </script>
 
 <style lang="scss" scoped>
 
 </style>
-
 

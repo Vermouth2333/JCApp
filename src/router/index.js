@@ -6,8 +6,11 @@ import list from "./list"
 import theatre from "./list_theatre"
 import detail from "./list_details"
 import showList from "./list_showList"
-import order from "./order"
 import mine from "./mine"
+import order from "./order"
+import rebate from "./rebate"
+import detailD from "./detailD"
+import cityList from "./cityList"
 Vue.use(VueRouter)
 
 export default new VueRouter({
@@ -18,14 +21,14 @@ export default new VueRouter({
             redirect:"/home"
         },
         home,
-
         list,
         theatre,
         detail,
         showList,
-
-
         order,
-        mine
+        mine,
+        rebate,
+        detailD,
+        cityList,
     ]
 })

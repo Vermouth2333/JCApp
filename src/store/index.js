@@ -1,11 +1,9 @@
 import Vue from "vue";
 import Vuex from "vuex";
-
 import list from "./list"
-
+import city from "./city"
 
 Vue.use(Vuex);
-
 
 const state={}
 const actions={}
@@ -16,6 +14,7 @@ export default new Vuex.Store({
     actions,
     mutations,
     modules:{
-        list
+        list,
+        city,
     }
 })
