@@ -7,7 +7,7 @@
                 <v-touch 
                 v-for="(item,index) in allList" 
                 :key="index"
-                @tap="handleToDetail(item.id,item.date)"
+                @tap="handleToDetail(item.id,item.date,item.min_discount)"
                 tag="li">
                     <div class="card">
                         <div class="pic"><img :src="item.pic"></div>
@@ -42,8 +42,8 @@ export default {
         }
     },
     methods:{
-        handleToDetail(id,date){
-            this.$router.push({name:"detailD",params:{id,date}})
+        handleToDetail(id,date,discount){
+            this.$router.push({name:"detailD",params:{id,date,discount}})
 
         }
     },
