@@ -13,7 +13,9 @@ export default {
             tap:true,
             pullDownRefresh:true,
             pullUpLoad:true,
-            click:true
+            click:true,
+            scrollX: true,
+           //eventPassthrough: "vertical"
        })
     },
     methods:{

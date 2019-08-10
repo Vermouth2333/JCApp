@@ -8,7 +8,7 @@ export const home_return_play_api =()=>http("get","/home/index/getTourRecommendL
 //首页 演唱会 音乐剧 舞台剧 儿童剧 音乐会 展览休闲
 export const home_six_play_api =()=>http("get","/home/index/getFloorShow?city_id=0&version=6.0.3&referer=2")
 //为您推荐
-export const for_you_play_api =()=>http("get","/home/index/getRecommendShow?cityAdd=&page=1&version=6.0.3&referer=2")
+export const for_you_play_api =(page)=>http("get",`/home/index/getRecommendShow?cityAdd=&page=${page}&version=6.0.3&referer=2`)
 //vip
 export const for_vip_api =()=>http("get","/vip/index/getVipHomeSchedular?version=6.0.3&referer=2")
 //热门场馆

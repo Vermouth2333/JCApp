@@ -1,15 +1,16 @@
 <template>
     <div id="city_box" ref="scroll">
-        <mhy-BScroll>
-        <div>
             <header>
-                <h3><span>&lt;</span>城市选择</h3>
+                <h3>
+                <v-touch @tap="goBack()" tag="span">&lt;</v-touch>城市选择</h3>
             </header>
+        <mhy-BScroll ref="mhyscroll">
+        <div>
             <!-- 当前城市 -->
             <div class="now__city">
                 <span :ref="1">当前城市</span>
                 <ul>
-                    <li>全国</li>
+                    <li>{{$store.state.city.cityName}}</li>
                 </ul>
             </div>
             <!-- 定位城市 -->
@@ -23,7 +24,7 @@
             <div class="hot__city">
                 <span :ref="3">热门城市</span>
                 <ul>
-                    <li v-for="(item,index) in cityHot" :key="index">{{item.name}}</li>
+                    <v-touch tag="li" @tap="getCityValue(item)"  v-for="(item,index) in cityHot" :key="index">{{item.name}}</v-touch>
                 </ul>
             </div>
             <!-- 城市列表 -->
@@ -31,7 +32,10 @@
                 <div v-for="(item,index) in cityList" :key="index">
                     <div class="city__title" :ref="index" :key="index">{{index}}</div>
                     <ul>
-                        <li v-for="(item1, idx) in item.list" :key="idx">{{item1.name}}</li>
+                        <v-touch v-for="(item1, idx) in item.list" :key="idx"
+                        tag="li"
+                        @tap="getCityValue(item1)"
+                        >{{item1.name}}</v-touch>
                     </ul>
                 </div>
             </div>
@@ -47,27 +51,42 @@
     </div>
 </template>
 <script>
-import { mapActions,mapState } from "vuex";
+import {mapActions,mapState,mapMutations} from "vuex";
 export default {
     name:"cityList",
     created(){
         if(!sessionStorage.getItem("hotCity")||!sessionStorage.getItem("AllCity")){
             this.handlerGetCityAction();
         }
-    
     },
     methods:{
         ...mapActions({
             handlerGetCityAction:"city/handlerGetCityAction"
         }),
+        ...mapMutations({
+            handleToggleCity:"city/handleToggleCity"
+        }),
         handleTo(index){
             if(index==1||index==2||index==3){
-                this.$refs.scroll.scrollTop=this.$refs[index].offsetTop;
+                this.$refs.mhyscroll.scroll.scrollTo(0,-this.$refs[index].offsetTop,500);
+                //this.$refs.scroll.scrollTop=this.$refs[index].offsetTop;
             }else{
+                this.$refs.mhyscroll.scroll.scrollTo(0,-this.$refs[index][0].offsetTop,500);
                 //通过index  key值 遍历ref
                 //移动
-                this.$refs.scroll.scrollTop=this.$refs[index][0].offsetTop;
+                //this.$refs.scroll.scrollTop=this.$refs[index][0].offsetTop;
             }
+        },
+        goBack(){
+            this.$router.back();
+        },
+        getCityValue(val){
+            let city={};
+            city.cityName=val.name;
+            city.cityId=val.id;
+            this.$router.push("/home");
+            this.handleToggleCity(city);
+
         }
     },
     computed: {
@@ -86,9 +105,9 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-#city_box{background-color:#f5f5f5;height: 100%; position: relative;overflow: auto;}
+#city_box{background-color:#f5f5f5;height: 100%; position: relative;overflow: hidden;}
 //头部
-header{height: .44rem;line-height: .44rem;background-color:#fff;position:relative;
+header{height: .44rem;line-height: .44rem;background-color:#fff;position:relative;z-index: 10;
     span{position: absolute;left:.15rem;font-size: .16rem;font-size: 0.25rem;}
     h3{font-size: .18rem;font-weight: 400;text-align: center;}
 }

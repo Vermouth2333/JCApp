@@ -6,7 +6,7 @@
             to="/cityList"
             tag="div">
                 <i class="iconfont">&#xe611;</i>
-                <span>全国</span>
+                <span>{{$store.state.city.cityName}}</span>
             </router-link>
             <div>
                 <img src="../../../public/iconfont/search.png" alt="">
@@ -16,12 +16,13 @@
         </div>
         <!-- 内容盒子 -->
         <div class="center_box__box">
-            <mhy-BScroll ref="verscroll">
+            <mhy-BScroll ref="verscroll" style="overflow: hidden;">
                 <div class="center_box">
                     <!-- 轮播图 -->
                     <div class="swiper__top">
                         <div class="swiper-container" ref="swiperContainer">
                             <div class="swiper-wrapper">
+
                                 <div class="swiper-slide" v-for="(item,index) in bannerImg" :key="index">
                                     <img :src="item" alt="" style="width:100%;height:100%;">
                                 </div>
@@ -96,10 +97,14 @@
                                 <span ></span>
                             </div>
                             <div class="hot__play__center">
-                                <div v-for="(item,index) in hotPlay" :key="index">
-                                    <img :src="item.pic" alt="">
-                                    <p>{{item.show_name}}</p>
-                                </div>
+                                <mhy-BScroll class="hot__play__center__box">
+                                    <div>
+                                        <div v-for="(item,index) in hotPlay" :key="index">
+                                            <img :src="item.pic" alt="">
+                                            <p>{{item.show_name}}</p>
+                                        </div>
+                                    </div>
+                                </mhy-BScroll>
                             </div>
                         </section>
                     <!-- 巡回演出 -->
@@ -109,11 +114,15 @@
                                 <span></span>
                             </div>
                             <div class="return__play__center">
-                                <div v-for="(item,index) in returnPlay" :key="index">
-                                    <img :src="item.pic" alt="">
-                                    <p>{{item.show_name}}</p>
-                                    <p>{{item.schedular_num}}场巡演</p>
-                                </div>
+                                <mhy-BScroll class="return__play__center__box">
+                                    <div>
+                                        <div v-for="(item,index) in returnPlay" :key="index">
+                                            <img :src="item.pic" alt="">
+                                            <p>{{item.show_name}}</p>
+                                            <p>{{item.schedular_num}}场巡演</p>
+                                        </div>
+                                    </div>
+                                </mhy-BScroll>
                             </div>
                         </section>
                         <!-- VIP -->
@@ -168,46 +177,57 @@
                                 </div>
                                 <div>
                                     <div class="category__swiper">
-                                        <div v-for="(item, index) in sixPlay[index].list" :key="index">
-                                            <img :src="item.pic" alt="">
-                                            <p>{{item.schedular_name}}</p>
-                                            <span>￥{{splitPrice(item.low_price)}}</span><span>起</span>
-                                        </div>
+                                        <mhy-BScroll class="category__swiper__box">
+                                            <div class="category__swiper__box__firstdiv">
+                                                <div v-for="(item, index) in sixPlay[index].list" :key="index">
+                                                    <img :src="item.pic" alt="">
+                                                    <p>{{item.schedular_name}}</p>
+                                                    <span>￥{{splitPrice(item.low_price)}}</span><span>起</span>
+                                                </div>
+                                            </div>
+                                        </mhy-BScroll>
                                     </div>
                                 </div>
                             </section>  
                         </div>  
                         <!-- 热门场馆 -->
                         <div class="hot__airtle">
-                            <hgroup>
+                            <router-link
+                             to="/List"
+                             tag="hgroup"
+                            >
                                 <h3>热门场馆</h3>
                                 <span></span>
-                            </hgroup>
+                            </router-link>
                             <div class="hot__airtle__swiper__box">
-                                <div class="hot__aritle__swiper" v-for="(item,index) in hotVenue" :key="index">
-                                    <div class="hot__aritle__swiper_top">
-                                        <img :src="item.pic" alt="">
-                                        <div>
-                                            <a href="#">{{item.name}}</a>
-                                            <p>{{item.count}}场在售演出</p>
+                                <mhy-BScroll class="hot__airtle__swiper__bigbox">
+                                    <div class="hot__airtle__swiper_smallbox">
+                                        <div class="hot__aritle__swiper" v-for="(item,index) in hotVenue" :key="index">
+                                            <div class="hot__aritle__swiper_top">
+                                                <img :src="item.pic" alt="">
+                                                <div>
+                                                    <a href="#">{{item.name}}</a>
+                                                    <p>{{item.count}}场在售演出</p>
+                                                </div>
+                                                <a href="#" class="elipse">...</a>
+                                            </div>
+                                            <div class="hot__aritle__swiper_center">
+                                                <p>
+                                                    <span>{{item.showList?item.showList[0].show_time:''}}</span>
+                                                    <span>{{item.showList?item.showList[1].show_time:''}}</span>
+                                                </p>
+                                                <ul>
+                                                    <li></li>
+                                                    <li></li>
+                                                </ul>
+                                            </div>
+                                            <div class="hot__aritle__swiper_bottom">
+                                                <a href="#"><img :src="item.showList?item.showList[0].pic:''" alt=""></a>
+                                                <a href="#"><img :src="item.showList?item.showList[1].pic:''" alt=""></a>
+                                            </div>
                                         </div>
-                                        <a href="#" class="elipse">...</a>
                                     </div>
-                                    <div class="hot__aritle__swiper_center">
-                                        <p>
-                                            <span>{{item.showList?item.showList[0].show_time:''}}</span>
-                                            <span>{{item.showList?item.showList[1].show_time:''}}</span>
-                                        </p>
-                                        <ul>
-                                            <li></li>
-                                            <li></li>
-                                        </ul>
-                                    </div>
-                                    <div class="hot__aritle__swiper_bottom">
-                                        <a href="#"><img :src="item.showList?item.showList[0].pic:''" alt=""></a>
-                                        <a href="#"><img :src="item.showList?item.showList[1].pic:''" alt=""></a>
-                                    </div>
-                                </div>
+                                </mhy-BScroll>
                             </div>
                         </div>
                         <!-- 为您推荐 -->
@@ -264,7 +284,7 @@ export default {
         let sixPlay = await home_six_play_api();
         this.sixPlay= sixPlay.data;//六分类演出
 
-        let forYou = await for_you_play_api();
+        let forYou = await for_you_play_api(this.page);
         this.forYou= forYou.data.recommend_show_list;//为您推荐
         
         let forVip = await for_vip_api();
@@ -277,6 +297,7 @@ export default {
     
     data(){
         return {
+            page:1,//页面
             ad_list:{//获取图片图标信息
                 advert1:[
                     {   
@@ -299,8 +320,7 @@ export default {
                 watchList:[]
             },
             hotVenue:{//热门场馆
-                theatre_list:[
-                ]
+                theatre_list:[]
             },
             bannerImg:[]//轮播图
         }
@@ -338,9 +358,12 @@ export default {
         },
     },
     mounted(){
-        this.$refs.verscroll.handlepullingDown(()=>{
-            console.log("111");
-        });
+         this.$refs.verscroll.handlepullingUp(async()=>{
+            this.page=this.page+1; 
+            let data=await for_you_play_api(this.page);
+            this.forYou=[...this.forYou,...data.data.recommend_show_list];
+            this.$refs.verscroll.handlefinishPullUp();
+        })
     }
 }
 </script>
@@ -348,21 +371,21 @@ export default {
     #home_box{height:100%;background-color: #F5F5F5;}
     /* 搜索栏 */
     .search{width: 100%;position: absolute;top: 0;height: .44rem;z-index: 10;;display:flex;justify-content: space-between;align-items: center; padding:0 .15rem;
-        // background-color: #fff;
+        background-color: #fff;
         div:nth-of-type(1){width: .6rem;height: .3rem;background-color: rgba(0,0,0,.3);border: 1px solid hsla(0,0%,88%,.3);line-height:.3rem;border-radius: .13rem;
             i{width: .11rem;height: .13rem; color: #fff;padding-left: .05rem;}
-            span{color: #fefefe;font-weight: 700;font-size: .15rem;margin-left: .005rem;}
+            span{color: #fff;font-weight: 700;font-size: .15rem;margin-left: .005rem;}
         }
-        div:nth-of-type(2){width:2.4rem;height: .3rem;background-color: rgba(0,0,0,.3);border: 1px solid hsla(0,0%,88%,.3);border-radius: .13rem;
+        div:nth-of-type(2){width:2.4rem;height: .3rem;background-color:#b3b3b3;border: 1px solid hsla(0,0%,88%,.3);border-radius: .13rem;
             display: flex;line-height:.3rem;
             img{width:.2rem;height:.2rem;margin-left: .11rem;margin-right: .05rem;margin-top: .05rem;}
-            span{color: #fefefe;font-size: .13rem;}
+            span{color: #fff;font-size: .13rem;}
         }
         div:nth-of-type(3){width: .27rem;height: .25rem;background: url("https://image.juooo.com/group1/M00/02/65/rAoKmVyvD7iAHJX4AAADmpmoUeI150.png");
             background-size: 100%;
         }
     }
-    .center_box__box{height: 100%;width: 100%;position: absolute;top: 0;bottom: .49rem;overflow-y: auto;}
+    .center_box__box{height: 100%;width: 100%;position: absolute;top: 0;bottom: .49rem;}
     /* 内容盒子 */
     .center_box{width: 100%;height:auto;touch-action: none;}
     /* 头部轮播图 */
@@ -404,20 +427,23 @@ export default {
     .hot__play__title{height: .23rem;display: flex;margin-bottom: .2rem;}
     .hot__play__title>span{margin-right:.1rem;width: .2rem;height: .2rem;display: block;font-size: .2rem;background: url("../../../public/iconfont/to_next_icon.png");background-size: 100%;}
     .hot__play__title>h3{flex: 1;font-size: .2rem;}
-    .hot__play__center{height: 1.78rem; display: flex; overflow-y: auto;}
-    .hot__play__center>div{height: 100%;width: 1.07rem;margin-right: .08rem;}
-    .hot__play__center>div>img{width: 1.07rem;height: 1.46rem; background-color: brown;}
-    .hot__play__center>div>p{margin-top: .05rem;font-size: .15rem;overflow:hidden;white-space: nowrap;text-overflow: ellipsis;}
+    .hot__play__center{height: 1.78rem;width: 100%;}
+
+    .hot__play__center__box>div{height: 100%;width: 11.61rem;display: flex;}
+    .hot__play__center__box>div>div{height: 100%;width: 1.07rem;margin-right: .08rem;}
+    .hot__play__center__box>div>div>img{width: 1.07rem;height: 1.46rem; background-color: brown;}
+    .hot__play__center__box>div>div>p{margin-top: .05rem;font-size: .15rem;overflow:hidden;white-space: nowrap;text-overflow: ellipsis;}
     /* 巡回演出 */
     .return__play{height: 2.76rem;padding: .2rem 0 .35rem .15rem;}
     .return__play__title{height: .23rem;display: flex;margin-bottom: .2rem;}
     .return__play__title>span{margin-right:.1rem;width: .2rem;height: .2rem;display: block;font-size: .2rem;background: url("../../../public/iconfont/to_next_icon.png");background-size: 100%;}
     .return__play__title>h3{flex: 1;font-size: .2rem;}
-    .return__play__center{height: 1.99rem; display: flex; overflow-y: auto;}
-    .return__play__center>div{height: 100%;width: 2.45rem;margin-right: .08rem;}
-    .return__play__center>div>img{width: 2.45rem;height: 1.40rem; background-color: brown;}
-    .return__play__center>div>p:nth-of-type(1){margin-top: .05rem;font-size: .18rem;overflow:hidden;white-space: nowrap;text-overflow: ellipsis;}
-    .return__play__center>div>p:nth-of-type(2){margin-top: .05rem;font-size: .12rem; text-align: center;}
+    .return__play__center{height: 1.99rem;}
+    .return__play__center__box>div{width: 15.24rem; display: flex;}
+    .return__play__center__box>div>div{height: 100%;width: 2.45rem;margin-right: .08rem;}
+    .return__play__center__box>div>div>img{width: 2.45rem;height: 1.40rem; background-color: brown;}
+    .return__play__center__box>div>div>p:nth-of-type(1){margin-top: .05rem;font-size: .18rem;overflow:hidden;white-space: nowrap;text-overflow: ellipsis;}
+    .return__play__center__box>div>div>p:nth-of-type(2){margin-top: .05rem;font-size: .12rem; text-align: center;}
     /* vip */
     .vip{
         height: .4rem;padding: 0 .15rem; background-color: black;display: flex;justify-content: space-between; align-items: center;width: 100%;
@@ -475,14 +501,19 @@ export default {
             }
             div:nth-of-type(2){height: 2.21rem;
                 .category__swiper{
-                    height: 100%;padding: .15rem 0 0 .15rem;overflow-x: auto;display:flex;
-                    div{
-                        width: 1.07rem; margin-right: .08rem;height:100%;
-                        img{width: 1.07rem;height: 1.46rem;}
-                        p{white-space: nowrap;overflow:hidden; text-overflow: ellipsis;font-size: .17rem;margin-top:.1rem;color: #232323;font-weight: bold;}
-                        span:nth-of-type(1){color: #ff6743;font-size: .16rem;margin-right: .05rem;}
-                        span:nth-of-type(2){font-size: .12rem;color: #999;}
+                    height: 100%;padding: .15rem 0 0 .15rem;
+                    .category__swiper__box{
+                        .category__swiper__box__firstdiv{display:flex;width:11.5rem;
+                            div{
+                                width: 1.07rem; margin-right: .08rem;height:100%;
+                                img{width: 1.07rem;height: 1.46rem;}
+                                p{white-space: nowrap;overflow:hidden; text-overflow: ellipsis;font-size: .17rem;margin-top:.1rem;color: #232323;font-weight: bold;}
+                                span:nth-of-type(1){color: #ff6743;font-size: .16rem;margin-right: .05rem;}
+                                span:nth-of-type(2){font-size: .12rem;color: #999;}
+                            }
+                        }
                     }
+                   
                 }
             }
         }
@@ -495,33 +526,37 @@ export default {
             h3{flex: 1;font-size: .2rem;padding-left: .15rem;}
             span{width: .2rem;height: .2rem;display: block;margin-right: .1rem;background: url("../../../public/iconfont/to_next_icon.png");background-size: 100%;}
         }
-        .hot__airtle__swiper__box{display:flex; height:3.13rem;overflow-x:auto;
-            .hot__aritle__swiper{width: 2.64rem;height: 2.93rem;margin-right: .2rem;border: 1px solid #ebebeb;background-color: #fff;padding:.2rem .17rem 0;margin-top: .2rem;flex-shrink:0;
-                // 横向滑动头部
-                .hot__aritle__swiper_top{
-                    height: .51rem;display: flex;
-                    img{height: .5rem; width: .5rem;background-color: black;}
-                    div{padding-left: .1rem;
-                        a{font-size: .17rem;color: #232323;font-weight: 700;}
-                        p{font-size: .12rem;color: #666;margin-top: .07rem;}
+        .hot__airtle__swiper__box{height:3.13rem;
+            .hot__airtle__swiper__bigbox{
+                .hot__airtle__swiper_smallbox{display:flex;width:17.04rem;
+                    .hot__aritle__swiper{width: 2.64rem;height: 2.93rem;margin-right: .2rem;border: 1px solid #ebebeb;background-color: #fff;padding:.2rem .17rem 0;margin-top: .2rem;flex-shrink:0;
+                    // 横向滑动头部
+                    .hot__aritle__swiper_top{
+                        height: .51rem;display: flex;
+                        img{height: .5rem; width: .5rem;background-color: black;}
+                        div{padding-left: .1rem;
+                            a{font-size: .17rem;color: #232323;font-weight: 700;}
+                            p{font-size: .12rem;color: #666;margin-top: .07rem;}
+                        }
+                        .elipse{font-size: .2rem;line-height: .51rem;padding-left: .4rem;}
                     }
-                    .elipse{font-size: .2rem;line-height: .51rem;padding-left: .4rem;}
-                }
-                .hot__aritle__swiper_center{
-                    height:.02rem;margin-top: .4rem;position: relative;background-color: #ebebeb;
-                    p{position: absolute;display: flex;justify-content: space-around;width: 100%;bottom: .17rem;color: #b3b3b3;}
-                    ul{display: flex;width: 100%;justify-content: space-around;position: absolute;bottom: -.03rem;
-                        li{width: .07rem;height: .07rem;background-color: #ccc;border-radius: 50%;}
+                    .hot__aritle__swiper_center{
+                        height:.02rem;margin-top: .4rem;position: relative;background-color: #ebebeb;
+                        p{position: absolute;display: flex;justify-content: space-around;width: 100%;bottom: .17rem;color: #b3b3b3;}
+                        ul{display: flex;width: 100%;justify-content: space-around;position: absolute;bottom: -.03rem;
+                            li{width: .07rem;height: .07rem;background-color: #ccc;border-radius: 50%;}
+                        }
                     }
-                }
-                .hot__aritle__swiper_bottom{
-                    height: 1.65rem;padding-top: .17rem;display: flex; justify-content: space-between;
-                    a{
-                        display: block;width:1.09rem;height:1.46rem;
-                        img{width: 100%;height: 100%;background-color: black;}
+                    .hot__aritle__swiper_bottom{
+                        height: 1.65rem;padding-top: .17rem;display: flex; justify-content: space-between;
+                        a{
+                            display: block;width:1.09rem;height:1.46rem;
+                            img{width: 100%;height: 100%;background-color: black;}
+                        }
                     }
                 }
             }
+         }
         }
     }
     /* 为您推荐 */

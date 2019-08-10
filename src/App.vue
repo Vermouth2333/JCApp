@@ -1,8 +1,8 @@
 <template>
   <div id="app">
       <router-view></router-view> 
-    <TabBar v-if="$route.meta.tabBar"/>
-    <!-- <Loading/> -->
+      <TabBar v-if="$route.meta.tabBar"/>
+      <!-- <Loading/> -->
   </div>
 </template>
 <script>
